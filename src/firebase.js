@@ -1,4 +1,3 @@
-// firebase.js
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
@@ -6,7 +5,7 @@ import { getDatabase } from "firebase/database";
 const firebaseConfig = {
   apiKey: "AIzaSyCRrythZkPODbfKSk5Kyt_UU2kDSO3yl9M",
   authDomain: "bus-tracker-e0905.firebaseapp.com",
-  databaseURL: "https://bus-tracker-e0905-default-rtdb.asia-southeast1.firebasedatabase.app", // <-- ADD THIS
+  databaseURL: "https://bus-tracker-e0905-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "bus-tracker-e0905",
   storageBucket: "bus-tracker-e0905.firebasestorage.app",
   messagingSenderId: "729061152399",

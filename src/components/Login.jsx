@@ -1,89 +1,91 @@
-
 import { useState } from "react";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, set } from "firebase/database";
 import { auth, database } from "../firebase";
 
-function Login() {
+function Login({ onBack }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSignUp, setIsSignUp] = useState(false);
-  const [role, setRole] = useState("student"); // Default role
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleAuth = async () => {
+    setError("");
+
+    if (!email || !password) {
+      setError("Please enter both email and password.");
+      return;
+    }
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters.");
+      return;
+    }
+
+    setLoading(true);
     try {
       if (isSignUp) {
-        // Sign Up Logic
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // Save user role to Realtime Database
         await set(ref(database, "users/" + user.uid), {
           email: user.email,
-          role: role
+          role: "driver"
         });
-
-        alert("Account created successfully!");
       } else {
-        // Login Logic
         await signInWithEmailAndPassword(auth, email, password);
       }
-    } catch (error) {
-      alert(error.message);
+    } catch (err) {
+      const messages = {
+        "auth/user-not-found": "No account found. Please sign up first.",
+        "auth/wrong-password": "Wrong password. Try again.",
+        "auth/invalid-email": "Invalid email address.",
+        "auth/email-already-in-use": "Email already registered. Try logging in.",
+        "auth/invalid-credential": "Invalid credentials. Check email/password or sign up first.",
+        "auth/weak-password": "Password must be at least 6 characters.",
+      };
+      setError(messages[err.code] || err.message);
     }
+    setLoading(false);
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "100px" }}>
-      <h2>{isSignUp ? "Create Account" : "Login"}</h2>
+    <div className="login-page">
+      <div className="login-card">
+        <h2>{isSignUp ? "Create Driver Account" : "Driver Login"}</h2>
 
-      <input
-        type="email"
-        placeholder="Email"
-        onChange={(e) => setEmail(e.target.value)}
-        value={email}
-      />
-      <br /><br />
+        {error && <div className="error-msg">{error}</div>}
 
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-      />
-      <br /><br />
+        <input
+          className="input"
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleAuth()}
+        />
 
-      {isSignUp && (
-        <div style={{ marginBottom: "20px" }}>
-          <label>
-            <input
-              type="radio"
-              name="role"
-              value="student"
-              checked={role === "student"}
-              onChange={(e) => setRole(e.target.value)}
-            /> Student
-          </label>
-          <span style={{ margin: "0 10px" }}>|</span>
-          <label>
-            <input
-              type="radio"
-              name="role"
-              value="driver"
-              checked={role === "driver"}
-              onChange={(e) => setRole(e.target.value)}
-            /> Driver
-          </label>
-        </div>
-      )}
+        <input
+          className="input"
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleAuth()}
+        />
 
-      <button onClick={handleAuth}>
-        {isSignUp ? "Sign Up" : "Login"}
-      </button>
+        <button className="btn btn-primary" onClick={handleAuth} disabled={loading}>
+          {loading ? "Please wait..." : isSignUp ? "Sign Up" : "Login"}
+        </button>
 
-      <p onClick={() => setIsSignUp(!isSignUp)} style={{ cursor: "pointer", color: "blue" }}>
-        {isSignUp ? "Already have an account? Login" : "Don't have an account? Sign Up"}
-      </p>
+        <p className="toggle-link" onClick={() => { setIsSignUp(!isSignUp); setError(""); }}>
+          {isSignUp ? "Already have an account? Login" : "Don't have an account? Sign Up"}
+        </p>
+
+        <button className="btn btn-secondary" onClick={onBack} style={{ marginTop: "12px" }}>
+          ← Back to Student View
+        </button>
+      </div>
     </div>
   );
 }
