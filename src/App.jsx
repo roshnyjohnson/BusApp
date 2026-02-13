@@ -1,7 +1,16 @@
-import Student from "./components/Student";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Student from "./pages/Student";
+import Driver from "./pages/Driver";
 
-function App() {
-  return <Student />;
+export default function App() {
+
+  console.log("APP RENDERED");
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Student />} />
+        <Route path="/driver" element={<Driver />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-export default App;
