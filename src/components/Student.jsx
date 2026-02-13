@@ -17,9 +17,11 @@ L.Icon.Default.mergeOptions({
 });
 
 function Student() {
-  const [busLocation, setBusLocation] = useState({ lat: 9.575, lng: 76.619 });
+  const [busLocation, setBusLocation] = useState(null);
   const [studentLocation, setStudentLocation] = useState(null);
   const [distance, setDistance] = useState(null);
+  const [busId, setBusId] = useState("bus1");
+  const [inputBusId, setInputBusId] = useState("bus1");
 
   // Watch student location
   useEffect(() => {
@@ -41,7 +43,9 @@ function Student() {
 
   // Watch bus location
   useEffect(() => {
-    const busRef = ref(database, "buses/bus1");
+    if (!busId) return;
+
+    const busRef = ref(database, "buses/" + busId);
     const unsubscribe = onValue(busRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
@@ -57,11 +61,17 @@ function Student() {
           );
           setDistance(dist.toFixed(2));
         }
+      } else {
+        setBusLocation(null);
       }
     });
 
     return () => unsubscribe();
-  }, [studentLocation]);
+  }, [busId, studentLocation]);
+
+  const handleTrackBus = () => {
+    setBusId(inputBusId);
+  };
 
   // Haversine formula to calculate distance in km
   function getDistance(lat1, lon1, lat2, lon2) {
@@ -71,8 +81,8 @@ function Student() {
     const a =
       Math.sin(dLat / 2) ** 2 +
       Math.cos((lat1 * Math.PI) / 180) *
-        Math.cos((lat2 * Math.PI) / 180) *
-        Math.sin(dLon / 2) ** 2;
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) ** 2;
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
   }
@@ -80,17 +90,31 @@ function Student() {
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>Student Map</h1>
+
+      <div style={{ textAlign: "center", marginBottom: "10px" }}>
+        <input
+          type="text"
+          value={inputBusId}
+          onChange={(e) => setInputBusId(e.target.value)}
+          placeholder="Bus ID"
+        />
+        <button onClick={handleTrackBus}>Track</button>
+      </div>
+
       {distance && <p style={{ textAlign: "center" }}>Distance to Bus: {distance} km</p>}
+
       <MapContainer
-        center={[busLocation.lat, busLocation.lng]}
-        zoom={15}
-        style={{ height: "80vh", width: "90%", margin: "auto" }}
+        center={studentLocation || [9.575, 76.619]}
+        zoom={13}
+        style={{ height: "70vh", width: "90%", margin: "auto" }}
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-        <Marker position={[busLocation.lat, busLocation.lng]}>
-          <Popup>Bus 1</Popup>
-        </Marker>
+        {busLocation && (
+          <Marker position={[busLocation.lat, busLocation.lng]}>
+            <Popup>Bus: {busId}</Popup>
+          </Marker>
+        )}
 
         {studentLocation && (
           <CircleMarker

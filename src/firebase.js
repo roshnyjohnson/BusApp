@@ -1,8 +1,8 @@
-// Import the functions you need from the SDKs
+// firebase.js
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 
-// Your Firebase config (replace the values below with yours)
 const firebaseConfig = {
   apiKey: "AIzaSyCRrythZkPODbfKSk5Kyt_UU2kDSO3yl9M",
   authDomain: "bus-tracker-e0905.firebaseapp.com",
@@ -13,8 +13,7 @@ const firebaseConfig = {
   appId: "1:729061152399:web:48f9819273fb274721c2fa"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Realtime Database and export
+export const auth = getAuth(app);
 export const database = getDatabase(app);
