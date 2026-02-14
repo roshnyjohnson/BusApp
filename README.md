@@ -12,6 +12,9 @@
 ### Hosted Project Link
 https://bus-tracker-e0905.web.app/
 
+sample username:mrdriver@college.com
+password:123456
+
 ### Project Description
 This project is a real-time bus tracking system(now implemented for schools and colleges) that allows drivers to update their bus location using GPS and enables the user to view live bus locations with respect to their current location.
 
@@ -181,7 +184,8 @@ This video shows the working of the Application where the Driver logs in and loc
 
 https://drive.google.com/file/d/1JJV3bBNXdfBaeEi_5nES6yexSicde83H/view?usp=sharing
 
-This video depicts the home page where the we can track and compare the location of the required college bus with ourselves. 
+This video depicts the home page where the we can track and compare the location of the required college bus with ourselves.
+As you can see the college bus is tracked and shown (as the map pin icon )compared to the blue circle which depicts the location of the user.
 
 
 ---
