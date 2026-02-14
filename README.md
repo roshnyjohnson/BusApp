@@ -13,7 +13,7 @@
 https://bus-tracker-e0905.web.app/
 
 ### Project Description
-This project is a real-time bus tracking system that allows drivers to update their bus location using GPS and enables students to view live bus locations.
+This project is a real-time bus tracking system(now implemented for schools and colleges) that allows drivers to update their bus location using GPS and enables the user to view live bus locations with respect to their current location.
 
 ### The Problem statement
 Students often struggle to know the real-time location of college buses, causing delays and missed rides. Traditional schedules and manual updates are slow and unreliable.
@@ -102,34 +102,67 @@ This is the login page for the registered drivers
 
 #### API Documentation
 
-**Base URL:** https://bus-tracker-e0905-default-rtdb.asia-southeast1.firebasedatabase.app/
+Base URL: https://bus-tracker-e0905-default-rtdb.asia-southeast1.firebasedatabase.app
 
-**POST /api/bus-data**
-- **Description:** : Adds or updates bus, driver, and user data in the system.
-- **Request Body:**
+Real-time Endpoints (Firebase Paths)
+PATH: /buses/{busId}
+Description: Updates or retrieves the live geographic coordinates and tracking status of a specific bus.
+
+WRITE (Driver Side):
+
+Method: Firebase set()
+
+Request Body:
+
+JSON
 {
-  "buses": {
-    "bus4": {
-      "lat": 0,
-      "lng": 0,
-      "timestamp": 0
-    }
-  },
-  "users": {
-    "apK1Pg83nPdkY0BjPivULbGagZ52": {
-      "email": "mrdriver@college.com",
-      "role": "driver"
-    },
-    "iTfGFfdc9Bg3GnlZkb3gPaG1mRH3": {
-      "email": "missdriver@college.com",
-      "role": "driver"
-    },
-    "pr62NeaCMUYud4fDrFGEgyVlHzh2": {
-      "email": "driver5@college.com",
-      "role": "driver"
-    }
-  }
+  "lat": 9.57500,
+  "lng": 76.61900,
+  "timestamp": 1707912345678,
+  "driverId": "user_uid_123"
 }
+READ (Student Side):
+
+Method: Firebase onValue() (WebSocket Stream)
+
+Response:
+
+JSON
+{
+  "lat": 9.57500,
+  "lng": 76.61900,
+  "timestamp": 1707912345678,
+  "driverId": "user_uid_123"
+}
+PATH: /drivers/{uid}
+Description: Associates a logged-in driver with a specific bus ID to begin tracking.
+
+WRITE (Driver Side):
+
+Method: Firebase set()
+
+Request Body:
+
+JSON
+{
+  "busId": "bus1",
+  "email": "driver@college.com"
+}
+PATH: /users/{uid}
+Description: Stores user profile information and access roles upon registration.
+
+WRITE (Authentication Flow):
+
+Method: Firebase set()
+
+Request Body:
+
+JSON
+{
+  "email": "user@college.com",
+  "role": "driver"
+}
+
 
 ---
 
@@ -143,7 +176,12 @@ This is the login page for the registered drivers
 
 ### Video
 https://drive.google.com/file/d/148BPW4OxbS0eTZufSNvoSZqanheVHu_G/view?usp=sharing
+
 This video shows the working of the Application where the Driver logs in and location is securely shared.
+
+https://drive.google.com/file/d/1JJV3bBNXdfBaeEi_5nES6yexSicde83H/view?usp=sharing
+
+This video depicts the home page where the we can track and compare the location of the required college bus with ourselves. 
 
 
 ---
