@@ -13,7 +13,7 @@
 - Member 2: Gauri Lakshmi - RIT Kottayam
 
 ### Hosted Project Link
-
+https://bus-tracker-e0905.web.app/
 
 ### Project Description
 This project is a real-time bus tracking system that allows drivers to update their bus location using GPS and enables students to view live bus locations.
@@ -57,7 +57,6 @@ List the key features of your project:
 #### Installation
 Installation commands - npm install
 
-
 #### Run
 Run commands - npm run dev
 
@@ -69,14 +68,16 @@ Run commands - npm run dev
 
 #### Screenshots (Add at least 3)
 
-![Screenshot1]
+<img width="1909" height="1070" alt="image" src="https://github.com/user-attachments/assets/fc7ee274-9fe4-45dc-9827-9d60179f0748" />
+This is the open page for the students to track those buses whose drivers has enabled their location access.
+
+<img width="1903" height="753" alt="image" src="https://github.com/user-attachments/assets/b2d098ec-a098-4f9c-97ec-9bb909db4199" />
+
 This shows the Driver's Dashboard - After the authentication of location
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+<img width="907" height="816" alt="image" src="https://github.com/user-attachments/assets/e570fc42-ef38-447b-8506-2da8e1b90d51" />
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+This is the login page for the registered drivers
 
 #### Diagrams
 
@@ -94,18 +95,8 @@ This shows the Driver's Dashboard - After the authentication of location
 
 #### Build Photos
 
-![Team](Add photo of your team here)
+![WhatsApp Image 2026-02-14 at 9 32 30 AM](https://github.com/user-attachments/assets/821a020d-0f22-483b-96a2-05be57668a07)
 
-![Components](Add photo of your components here)
-*List out all components shown*
-
-![Build](Add photos of build process here)
-*Explain the build steps*
-
-![Final](Add photo of final product here)
-*Explain the final build*
-
----
 
 ## Additional Documentation
 
@@ -113,142 +104,44 @@ This shows the Driver's Dashboard - After the authentication of location
 
 #### API Documentation
 
-**Base URL:** `https://api.yourproject.com`
+**Base URL:** https://bus-tracker-e0905-default-rtdb.asia-southeast1.firebasedatabase.app/
 
-##### Endpoints
 
-**GET /api/endpoint**
-- **Description:** [What it does]
-- **Parameters:**
-  - `param1` (string): [Description]
-  - `param2` (integer): [Description]
-- **Response:**
-```json
-{
-  "status": "success",
-  "data": {}
-}
-```
 
-**POST /api/endpoint**
-- **Description:** [What it does]
+**POST /api/bus-data**
+- **Description:** : Adds or updates bus, driver, and user data in the system.
 - **Request Body:**
-```json
 {
-  "field1": "value1",
-  "field2": "value2"
+  "buses": {
+    "bus4": {
+      "lat": 0,
+      "lng": 0,
+      "timestamp": 0
+    }
+  },
+  "users": {
+    "apK1Pg83nPdkY0BjPivULbGagZ52": {
+      "email": "mrdriver@college.com",
+      "role": "driver"
+    },
+    "iTfGFfdc9Bg3GnlZkb3gPaG1mRH3": {
+      "email": "missdriver@college.com",
+      "role": "driver"
+    },
+    "pr62NeaCMUYud4fDrFGEgyVlHzh2": {
+      "email": "driver5@college.com",
+      "role": "driver"
+    }
+  }
 }
-```
-- **Response:**
-```json
-{
-  "status": "success",
-  "message": "Operation completed"
-}
-```
-
-[Add more endpoints as needed...]
 
 ---
 
 #
----
 
-### For Scripts/CLI Tools:
-
-#### Command Reference
-
-**Basic Usage:**
-```bash
-python script.py [options] [arguments]
 ```
 
-**Available Commands:**
-- `command1 [args]` - Description of what command1 does
-- `command2 [args]` - Description of what command2 does
-- `command3 [args]` - Description of what command3 does
 
-**Options:**
-- `-h, --help` - Show help message and exit
-- `-v, --verbose` - Enable verbose output
-- `-o, --output FILE` - Specify output file path
-- `-c, --config FILE` - Specify configuration file
-- `--version` - Show version information
-
-**Examples:**
-
-```bash
-# Example 1: Basic usage
-python script.py input.txt
-
-# Example 2: With verbose output
-python script.py -v input.txt
-
-# Example 3: Specify output file
-python script.py -o output.txt input.txt
-
-# Example 4: Using configuration
-python script.py -c config.json --verbose input.txt
-```
-
-#### Demo Output
-
-**Example 1: Basic Processing**
-
-**Input:**
-```
-This is a sample input file
-with multiple lines of text
-for demonstration purposes
-```
-
-**Command:**
-```bash
-python script.py sample.txt
-```
-
-**Output:**
-```
-Processing: sample.txt
-Lines processed: 3
-Characters counted: 86
-Status: Success
-Output saved to: output.txt
-```
-
-**Example 2: Advanced Usage**
-
-**Input:**
-```json
-{
-  "name": "test",
-  "value": 123
-}
-```
-
-**Command:**
-```bash
-python script.py -v --format json data.json
-```
-
-**Output:**
-```
-[VERBOSE] Loading configuration...
-[VERBOSE] Parsing JSON input...
-[VERBOSE] Processing data...
-{
-  "status": "success",
-  "processed": true,
-  "result": {
-    "name": "test",
-    "value": 123,
-    "timestamp": "2024-02-07T10:30:00"
-  }
-}
-[VERBOSE] Operation completed in 0.23s
-```
-
----
 
 ## Project Demo
 
@@ -266,36 +159,19 @@ python script.py -v --format json data.json
 
 If you used AI tools during development, document them here for transparency:
 
-**Tool Used:** [e.g., GitHub Copilot, v0.dev, Cursor, ChatGPT, Claude]
+**Tool Used:** Gemini 3, Chatgpt 4.0
 
-**Purpose:** [What you used it for]
-- Example: "Generated boilerplate React components"
-- Example: "Debugging assistance for async functions"
-- Example: "Code review and optimization suggestions"
-
-**Key Prompts Used:**
-- "Create a REST API endpoint for user authentication"
-- "Debug this async function that's causing race conditions"
-- "Optimize this database query for better performance"
-
-**Percentage of AI-generated code:** [Approximately X%]
-
-**Human Contributions:**
-- Architecture design and planning
-- Custom business logic implementation
-- Integration and testing
-- UI/UX design decisions
-
-*Note: Proper documentation of AI usage demonstrates transparency and earns bonus points in evaluation!*
+**Purpose:** 
+- Chatgpt: "Assisted in designing project flow"
+- Gemini: "Debugging assistance "
 
 ---
 
 ## Team Contributions
 
-- [Name 1]: [Specific contributions - e.g., Frontend development, API integration, etc.]
-- [Name 2]: [Specific contributions - e.g., Backend development, Database design, etc.]
-- [Name 3]: [Specific contributions - e.g., UI/UX design, Testing, Documentation, etc.]
-
+- Roshny Johnson: Specific contributions -  Backend development, Database design , API integration
+- Gauri Lakshmi: Specific contributions - Frontend development, UI/UX design, Testing, Documentation
+  
 ---
 
 ## License
