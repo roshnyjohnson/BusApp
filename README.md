@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="./img.png" alt="Project Banner" width="100%">
-</p>
 
 # Bus Track 🎯
 
@@ -148,8 +145,6 @@ This is the login page for the registered drivers
 https://drive.google.com/file/d/148BPW4OxbS0eTZufSNvoSZqanheVHu_G/view?usp=sharing
 This video shows the working of the Application where the Driver logs in and location is securely shared.
 
-### Additional Demos
-[Add any extra demo materials/links - Live site, APK download, online demo, etc.]
 
 ---
 
