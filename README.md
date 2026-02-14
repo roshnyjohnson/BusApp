@@ -12,7 +12,8 @@
 ### Hosted Project Link
 https://bus-tracker-e0905.web.app/
 
-sample username:mrdriver@college.com
+sample username:mrdriver@college.com,
+
 password:123456
 
 ### Project Description
