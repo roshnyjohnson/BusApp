@@ -83,7 +83,8 @@ This is the login page for the registered drivers
 
 **System Architecture:**
 
-![Architecture Diagram](docs/architecture.png)
+![Architecture Diagram]![Architecture diagram](https://github.com/user-attachments/assets/371c52cf-cacf-427c-8299-e75ef94a4463)
+
 *Explain your system architecture - components, data flow, tech stack interaction*
 
 **Application Workflow:**
@@ -105,8 +106,6 @@ This is the login page for the registered drivers
 #### API Documentation
 
 **Base URL:** https://bus-tracker-e0905-default-rtdb.asia-southeast1.firebasedatabase.app/
-
-
 
 **POST /api/bus-data**
 - **Description:** : Adds or updates bus, driver, and user data in the system.
@@ -139,16 +138,15 @@ This is the login page for the registered drivers
 
 #
 
-```
+
 
 
 
 ## Project Demo
 
 ### Video
-[Add your demo video link here - YouTube, Google Drive, etc.]
-
-*Explain what the video demonstrates - key features, user flow, technical highlights*
+https://drive.google.com/file/d/148BPW4OxbS0eTZufSNvoSZqanheVHu_G/view?usp=sharing
+This video shows the working of the Application where the Driver logs in and location is securely shared.
 
 ### Additional Demos
 [Add any extra demo materials/links - Live site, APK download, online demo, etc.]
