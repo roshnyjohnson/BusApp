@@ -88,10 +88,6 @@ This is the login page for the registered drivers
 
 *Explain your system architecture - components, data flow, tech stack interaction*
 
-**Application Workflow:**
-
-![Workflow](docs/workflow.png)
-*Add caption explaining your workflow*
 
 ---
 
